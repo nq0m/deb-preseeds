@@ -1,10 +1,10 @@
 # Locale, keyboard, and timezone
 d-i debian-installer/locale string en_US.UTF-8
 d-i keyboard-configuration/xkb-keymap select us
-d-i time/zone string US/Eastern
+d-i time/zone string US/Central
 
 # Network configuration
-d-i netcfg/choose_interface select auto
+# d-i netcfg/choose_interface select auto
 
 # Mirror settings
 d-i mirror/country string manual
@@ -13,27 +13,31 @@ d-i mirror/http/directory string /debian
 d-i mirror/http/proxy string
 
 # Root password and user setup
-d-i passwd/root-password password yourrootpassword
-d-i passwd/root-password-again password yourrootpassword
+# d-i passwd/root-password password
+# d-i passwd/root-password-again password
 d-i passwd/make-user boolean true
-d-i passwd/user-fullname string User
-d-i passwd/username string user
-d-i passwd/user-password password youruserpassword
-d-i passwd/user-password-again password youruserpassword
+# d-i passwd/user-fullname string
+# d-i passwd/username string
+# d-i passwd/user-password password
+# d-i passwd/user-password-again password
 
 # Partitioning (example: use entire disk, no LVM)
 d-i partman-auto/method string regular
 d-i partman-auto/choose_recipe select atomic
 d-i partman/confirm boolean true
 d-i partman/confirm_nooverwrite boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm_write_new_label boolean true
+d-i partman/confirm_write_new_label seen true
+d-i partman/confirm boolean true
+d-i partman/confirm seen true
 
 # Minimal system, Budgie desktop, and SSH server
 tasksel tasksel/first multiselect standard, ssh-server
-d-i pkgsel/include string budgie-desktop
+d-i pkgsel/include string budgie-desktop lightdm
 
 # Grub installation
 d-i grub-installer/only_debian boolean true
-d-i grub-installer/with_other_os boolean true
 
 # Finishing up
 d-i finish-install/reboot_in_progress note
