@@ -40,4 +40,5 @@ d-i pkgsel/include string budgie-desktop lightdm
 d-i grub-installer/only_debian boolean true
 
 # Finishing up
+d-i preseed/late_command string echo -e "[Seat:*]\nuser-session=budgie-desktop" >> /target/etc/lightdm/lightdm.conf
 d-i finish-install/reboot_in_progress note
