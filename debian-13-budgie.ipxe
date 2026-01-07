@@ -1,0 +1,17 @@
+#!ipxe
+
+# iPXE script to install Debian 13 Budgie with preseed from GitHub
+
+# Set variables for convenience
+set base-url https://cdimage.debian.org/cdimage/unofficial/non-free/images-including-firmware/13.0.0/amd64/iso-cd
+set preseed-url https://raw.githubusercontent.com/nq0m/deb-preseeds/main/debian-13-budgie.preseed
+
+
+# Boot Debian installer using kernel/initrd directly (graphical mode)
+kernel https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux auto=true priority=critical vga=788 interface=auto netcfg/disable_dhcp=false preseed/url=${preseed-url} DEBIAN_FRONTEND=gtk
+initrd https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+boot
+
+:failed
+echo Installation failed. Dropping to shell...
+shell
