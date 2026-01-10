@@ -34,7 +34,7 @@ d-i partman/confirm seen true
 
 # Minimal system, Budgie desktop, and SSH server
 tasksel tasksel/first multiselect standard, ssh-server
-d-i pkgsel/include string budgie-desktop lightdm
+d-i pkgsel/include string budgie-desktop lightdm firefox-esr alacritty
 
 # Grub installation
 d-i grub-installer/only_debian boolean true
